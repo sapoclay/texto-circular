@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="UTF-8">
+  <title>Texto Circular</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Contenedor principal -->
+  <div class="content">
+    <!-- Sección que contiene el texto, la imagen y la línea -->
+    <section>
+       <!-- Elemento de encabezado que contendrá el texto giratorio -->
+       <h1 class="text-ring"></h1>
+       <!-- Línea circular debajo del texto -->
+       <div class="bottom-line"></div>
+       <!-- Imagen del logo -->
+       <img src="./logo.png" alt="Logo" class="circle-image">
+    </section>
+    <!-- Contenedor de la caja de texto y botones -->
+    <div class="input-container">
+       <!-- Caja de texto para ingresar nuevo texto -->
+       <input type="text" id="newText" placeholder="Nuevo texto">
+       <!-- Botón para cambiar el texto -->
+       <button onclick="changeText()">Cambiar Texto</button>
+       <!-- Botón para borrar el texto -->
+       <button onclick="borrarTexto()">Borrar Texto</button>
+    </div>
+  </div>
+<script  src="./script.js"></script>
+</body>
+</html>
+ 

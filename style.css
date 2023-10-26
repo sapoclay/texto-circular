@@ -1,0 +1,158 @@
+/* Variables para colores */
+:root {
+  --color-0: #ff00aa;
+  --color-1: #ffffff; /*texto*/
+  --color-2: #e520ff;
+  --color-3: #a600e7;
+  --color-4: #8100d6;
+  --color-5: #9700dd;
+  --color-6: #9600c4;
+  --color-7: #7700ff;
+  --color-8: #5f005a;
+  --color-9: #290033;
+  --color-10: #16191d;
+  --color-11: #0d0f12;
+  --color-12: #030507;
+  /* Definición de superficies y texto en diferentes tonalidades*/
+}
+
+/* Cambios de variables en modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-1: var(--color-1);
+    --text-2: var(--color-1);
+    --text-3: var(--color-5);
+    --text-4: var(--color-6);
+    --surface-1: var(--color-10); /*Borde caja texto*/
+    --surface-2: var(--color-9);
+    --surface-3: var(--color-8); /*Color de fondo de pantalla*/
+    --surface-4: var(--color-7);
+  }
+}
+ 
+/* Estilos generales para todos los elementos */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+/* Estilos para el cuerpo de la página */
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-family: 'Google Sans', sans-serif, system-ui;
+  background: var(--surface-3); /* Fondo de la página */
+  color: var(--text-2); /* Color del texto */
+}
+
+/* Clase para texto que debe ser leído por lectores de pantalla únicamente */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Estilos para la sección que contiene el texto */
+section:first-of-type {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  margin-top:0%; /* Margen superior del elemento */
+}
+
+/* Estilos para el texto giratorio */
+.text-ring {
+  --inner-angle: calc((360 / var(--char-count)) * 1deg);
+  --character-width: 1;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-size: calc(var(--font-size, 1) * 10vmin);
+  position: relative;
+  box-shadow: none;
+}
+
+/* Animación para el texto giratorio */
+@media (prefers-reduced-motion: no-preference) {
+  .text-ring {
+    -webkit-animation: rotation 10s infinite linear;
+    animation: rotation 10s infinite linear;
+    /* Velocidad de giro */
+  }
+}
+
+@-webkit-keyframes rotation {
+  to {
+    rotate: -360deg;
+  }
+}
+
+@keyframes rotation {
+  to {
+    rotate: -360deg;
+  }
+}
+
+/* Estilos para los caracteres del texto giratorio */
+.char {
+  display: inline-block;
+  position: absolute;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform:
+    translate(-50%, -50%) rotate(calc(var(--inner-angle) * var(--char-index))) translateY(var(--radius));
+}
+
+/* Estilos para la sección que contiene el texto (repetido) y la imagen */
+section {
+  position: relative;
+}
+
+/* Estilos para la imagen */
+.circle-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1; /* Posición en el eje Z (delante del texto) */
+}
+
+/* Contenedor para el texto giratorio y la imagen */
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Posición en el eje Z (delante de la imagen) */
+}
+
+/* Caja para modificar el texto */
+.input-container {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white; /* Color de fondo de la caja de texto */
+  padding: 10px; /* Relleno de la caja de texto */
+  border:1px solid var(--surface-1);
+}
+
+/* Estilos para la caja de texto de entrada */
+#newText {
+  padding-top: 5px; /* Espacio adicional en la parte superior de la caja de texto */
+}
+
+/* Espacio adicional entre el texto giratorio y la caja de texto */
+.content {
+  margin-top: 40px !important; /* Margen superior del elemento (importante para anular otros estilos) */
+}
